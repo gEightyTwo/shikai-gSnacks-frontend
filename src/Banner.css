@@ -1,0 +1,19 @@
+Jumbotron, .banner {
+    display: flex;
+    height: 40vh;
+    background-image: url('./images/snacks.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 0;
+    padding-bottom:0;
+}
+
+.banner-title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    text-align: left;
+    margin: 0;
+}
+
