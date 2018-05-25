@@ -1,11 +1,10 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
-const LoginModal = ({ handleClose, handleShow, show }) => {
-  console.log('MODAL?', show)
-  return (
-    <div>
-        <Modal show={show} onHide={handleClose}>
+const CardModal = ({ handleCardClose, handleCardShow, cardShow }) => {
+    return (
+        <div>
+        <Modal show={cardShow} onHide={handleCardClose}>
           <Modal.Header closeButton>
             <Modal.Title>Login</Modal.Title>
           </Modal.Header>
@@ -101,13 +100,11 @@ const LoginModal = ({ handleClose, handleShow, show }) => {
             </p>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleCardClose}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>
-  )
+    )
 }
 
-export default LoginModal
-
-
+export default CardModal
