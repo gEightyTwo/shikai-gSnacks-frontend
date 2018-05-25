@@ -3,7 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } fr
 import { Container, Row, Col } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 
-const Snack = ({snack}) => {
+const Snack = ({snack, handleCardShow}) => {
   const { description, id, img, is_perishable, name, price } = snack
 
   return (
@@ -14,7 +14,9 @@ const Snack = ({snack}) => {
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>${price}</CardSubtitle>
           <CardText>{description}</CardText>
-          <Button>Reviews</Button>
+          <Button className='card-modal-button' bsStyle="primary" bsSize="large" onClick={handleCardShow}>
+                    More
+                </Button>
         </CardBody>
       </Card>
     </div>

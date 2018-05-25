@@ -7,6 +7,7 @@ import '../App.css';
 import LoginModal from './LoginModal'
 import Banner from './Banner'
 import SnackList from './SnackList'
+import CardModal from './CardModal'
 
 // const snacks =
 //   [
@@ -35,7 +36,8 @@ class App extends Component {
 
     this.state ={
       snacks: [],
-      show: false
+      show: false,
+      cardShow: false
     }
   }
 
@@ -44,6 +46,14 @@ class App extends Component {
     //Async and await so we can setState AFTER we get the data
     const getAllSnacksResponse = await axios.get('http://localhost:3000/snacks')
     this.setState({ snacks: getAllSnacksResponse.data.data })
+  }
+
+  handleCardShow = () => {
+    this.setState({ cardShow: true })
+  }
+
+  handleCardClose = () => {
+    this.setState({ cardShow: false })
   }
 
   handleClose = () => {
@@ -69,7 +79,8 @@ class App extends Component {
         <Banner handleShow={this.handleShow} />
         {/* <SnackList /> */}
         <LoginModal handleClose={this.handleClose} handleShow={this.handleShow} show={this.state.show}/>
-        <SnackList snackData={this.state.snacks}/>
+        <CardModal handleCardClose={this.handleCardClose} handleCardShow={this.handleCardShow} cardShow={this.state.cardShow} />
+        <SnackList snackData={this.state.snacks} handleCardShow={this.handleCardShow} />
       </div>
     );
   }
