@@ -1,7 +1,9 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
-const LoginModal = ({ handleClose, handleShow, show }) => (
+const LoginModal = ({ handleClose, handleShow, show }) => {
+  console.log('MODAL?', show)
+  return (
     <div>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -67,7 +69,8 @@ const LoginModal = ({ handleClose, handleShow, show }) => (
           </Modal.Footer>
         </Modal>
       </div>
-)
+  )
+}
 
 export default LoginModal
 

@@ -7,9 +7,9 @@ const Snack = ({snack}) => {
   const { description, id, img, is_perishable, name, price } = snack
 
   return (
-    <Col xs="3">
-      <Card>
-        <CardImg top width="100%" src={img} alt={name} />
+    <div height='400px' className="col-xs-4 well">
+    <Card>
+        <CardImg width='100%' src={img} alt={name} />
         <CardBody>
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>${price}</CardSubtitle>
@@ -17,7 +17,7 @@ const Snack = ({snack}) => {
           <Button>Reviews</Button>
         </CardBody>
       </Card>
-    </Col>
+    </div>
   )
 }
 

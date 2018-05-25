@@ -51,6 +51,7 @@ class App extends Component {
   }
 
   handleShow = () => {
+    console.log('heyo')
     this.setState({ show: true });
   }
 
