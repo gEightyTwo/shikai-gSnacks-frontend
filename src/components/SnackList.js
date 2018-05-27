@@ -4,7 +4,6 @@ import Snack from './Snack'
 
 const SnackList = ({snackData, handleCardShow}) => {
   const Snacks = snackData.map(snack => {
-    console.log(snack.id)
     return (
       <Snack
         key={snack.id}
