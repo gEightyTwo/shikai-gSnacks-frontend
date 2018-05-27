@@ -37,7 +37,9 @@ class App extends Component {
     this.state ={
       snacks: [],
       show: false,
-      cardShow: false
+      cardShow: false,
+      currSnack: {},
+      currReviews:[]
     }
   }
 
@@ -48,20 +50,32 @@ class App extends Component {
     this.setState({ snacks: getAllSnacksResponse.data.data })
   }
 
-  handleCardShow = () => {
+  // Review Modal Methods  //
+  handleCardShow = (id) => {
     this.setState({ cardShow: true })
+    this.updateCurrSnackState(id)
   }
 
   handleCardClose = () => {
     this.setState({ cardShow: false })
   }
 
+  updateCurrSnackState = async (id) => {
+    // Snack Info
+    const getOneSnack = await axios.get(`http://localhost:3000/snacks/${id}`)
+    this.setState({ currSnack: getOneSnack.data.data })
+    // Reviews
+    const getSnackReviews = await axios.get(`http://localhost:3000/snacks/${id}/reviews`)
+    this.setState({ currReviews: getSnackReviews.data.data })
+  }
+
+  // Login Modal Methods //
   handleClose = () => {
     this.setState({ show: false });
   }
 
   handleShow = () => {
-    console.log('handleShow')
+    // console.log('handleShow')
     this.setState({ show: true });
   }
 
@@ -79,7 +93,7 @@ class App extends Component {
         <Banner handleShow={this.handleShow} />
         {/* <SnackList /> */}
         <LoginModal handleClose={this.handleClose} handleShow={this.handleShow} show={this.state.show}/>
-        <CardModal handleCardClose={this.handleCardClose} handleCardShow={this.handleCardShow} cardShow={this.state.cardShow} />
+        <CardModal handleCardClose={this.handleCardClose} handleCardShow={this.handleCardShow} cardShow={this.state.cardShow} currSnack={this.state.currSnack} currReviews={this.state.currReviews}/>
         <SnackList snackData={this.state.snacks} handleCardShow={this.handleCardShow} />
       </div>
     );

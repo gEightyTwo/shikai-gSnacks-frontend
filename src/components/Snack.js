@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 
 const Snack = ({snack, handleCardShow}) => {
@@ -14,7 +13,7 @@ const Snack = ({snack, handleCardShow}) => {
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>${price}</CardSubtitle>
           <CardText>{description}</CardText>
-          <Button className='card-modal-button' bsStyle="primary" bsSize="large" onClick={handleCardShow}>
+          <Button className='card-modal-button' bsstyle="primary" bssize="large" onClick={()=>handleCardShow(id)}>
                     More
                 </Button>
         </CardBody>
