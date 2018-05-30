@@ -7,7 +7,8 @@ const SnackDescription = ({
     handleCardShow,
     cardShow,
     currSnack,
-    currReviews
+    currReviews,
+    handleReviewFormShow
 }) => {
     return(
         <div>
@@ -28,7 +29,9 @@ const SnackDescription = ({
           </Row>
           <h4>
             Reviews
-            <Button>Add Review</Button>
+            <Button
+            onClick={handleReviewFormShow}
+            >Add Review</Button>
           </h4>
           <ReviewList currReviews={currReviews} />
         </Modal.Body>

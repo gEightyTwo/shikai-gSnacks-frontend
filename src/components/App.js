@@ -16,11 +16,11 @@ class App extends Component {
 
     this.state ={
       snacks: [],
-      show: false,
       cardShow: false,
       currSnack: {},
       currReviews:[],
-      addReview:false
+      addReview: false,
+      show: false,
     }
   }
 
@@ -40,6 +40,14 @@ class App extends Component {
     this.setState({ cardShow: false })
   }
 
+  handleReviewFormShow = () => {
+    this.setState({ addReview: true })
+  }
+
+  handleReviewFormClose = () => {
+    this.setState({ addReview: false })
+  }
+
   updateCurrSnackState = async (id) => {
     // Snack Info
     const getOneSnack = await axios.get(`http://localhost:3000/snacks/${id}`)
@@ -52,11 +60,12 @@ class App extends Component {
   // Login Modal Methods //
   handleClose = () => {
     this.setState({ show: false });
+    // console.log(this.state.show)
   }
 
   handleShow = () => {
-    // console.log('handleShow')
     this.setState({ show: true });
+    // console.log(this.state.show)
   }
 
   //////////////////////
@@ -64,16 +73,18 @@ class App extends Component {
   //////////////////////
   componentWillMount = () => {
     this.updateState()
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   render() {
     return (
       <div className="App">
         <Banner handleShow={this.handleShow} />
-        {/* <SnackList /> */}
-        <LoginModal handleClose={this.handleClose} handleShow={this.handleShow} show={this.state.show}/>
-        <CardModal handleCardClose={this.handleCardClose} handleCardShow={this.handleCardShow} cardShow={this.state.cardShow} currSnack={this.state.currSnack} currReviews={this.state.currReviews}/>
+        { this.state.show ? <LoginModal handleClose={this.handleClose}/> : null}
+        <CardModal handleCardClose={this.handleCardClose} handleCardShow={this.handleCardShow} 
+          cardShow={this.state.cardShow} currSnack={this.state.currSnack} 
+          currReviews={this.state.currReviews}
+          handleReviewFormShow={this.handleReviewFormShow} handleReviewFormClose={this.handleReviewFormClose}/>
         <SnackList snackData={this.state.snacks} handleCardShow={this.handleCardShow} />
       </div>
     );

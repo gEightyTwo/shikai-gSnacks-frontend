@@ -1,113 +1,69 @@
-import React from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import React, { Component } from "react";
+import { Modal, Button } from "react-bootstrap";
+import { request } from '../helper/index'
 
-const LoginModal = ({ handleClose, handleShow, show }) => {
-  console.log('MODAL?', show)
-  return (
-    <div>
-        <Modal show={show} onHide={handleClose}>
+class LoginModal extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  loginSubmit = () => {
+    request('/auth/token', 'post', { email: this.state.email, password: this.state.password })
+      .then(response => {
+        localStorage.setItem('token', response.data.token)
+      })
+  }
+
+  render() {
+    return (
+      <div>
+      <Modal show={true} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
-          </Modal.Header>
-          <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
-            <h4>Text in a modal</h4>
-            <p>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
-
-            <hr />
-
-            <h4>Overflowing text to show scroll behavior</h4>
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur ac, vestibulum at eros.
-            </p>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur
-              et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-              auctor.
-            </p>
-            <p>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-            </p>
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur ac, vestibulum at eros.
-            </p>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur
-              et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-              auctor.
-            </p>
-            <p>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-            </p>
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur ac, vestibulum at eros.
-            </p>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur
-              et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-              auctor.
-            </p>
-            <p>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-              cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-              dui. Donec ullamcorper nulla non metus auctor fringilla.
-            </p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={handleClose}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-  )
+          <Modal.Title>Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body
+          style={{ maxHeight: "calc(100vh - 210px)", overflowY: "auto" }}
+        >
+          {
+            <form action="">
+              <label htmlFor="">
+                Email:
+                <input type="email" className="email" 
+                onChange={event => {
+                  this.setState({email: event.target.value})
+                }}
+                />
+              </label>
+              <label htmlFor="">
+                Password:
+                <input type="password" className="password" 
+                onChange = {event => {
+                  this.setState({password: event.target.value})
+                }}
+                />
+              </label>
+            </form>
+          }
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            onClick={event => {
+              this.loginSubmit()
+            }}
+          >
+            Login
+          </Button>
+          <Button onClick={this.props.handleClose}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+    )
+  }
 }
 
-export default LoginModal
 
-
+export default LoginModal;
