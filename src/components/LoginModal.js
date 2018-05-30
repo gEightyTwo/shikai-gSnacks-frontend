@@ -6,7 +6,7 @@ const LoginModal = ({ handleClose, handleShow, show }) => {
   return (
     <div>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+        <Modal.Header closeButton>
             <Modal.Title>Login</Modal.Title>
           </Modal.Header>
           <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>

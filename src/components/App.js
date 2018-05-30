@@ -9,26 +9,6 @@ import Banner from './Banner'
 import SnackList from './SnackList'
 import CardModal from './CardModal'
 
-// const snacks =
-//   [
-//     {
-//         "description": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.",
-//         "id": 1,
-//         "img": "https://images.unsplash.com/photo-1490885578174-acda8905c2c6?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=edefdcf46c20585719c55c6377816072",
-//         "is_perishable": false,
-//         "name": "Soup - Campbells Beef Noodle",
-//         "price": 26.37
-//     },
-//     {
-//         "description": "Fusce posuere felis sed lacus.",
-//         "id": 2,
-//         "img": "https://images.unsplash.com/photo-1457609171594-20fa2108dc41?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=adeb51e4f23f6d671af282534b72c08c",
-//         "is_perishable": false,
-//         "name": "Pie Filling - Cherry",
-//         "price": 3.16
-//     },
-//   ]
-
 class App extends Component {
 
   constructor(props){
@@ -39,10 +19,10 @@ class App extends Component {
       show: false,
       cardShow: false,
       currSnack: {},
-      currReviews:[]
+      currReviews:[],
+      addReview:false
     }
   }
-
 
   updateState = async () => {
     //Async and await so we can setState AFTER we get the data
