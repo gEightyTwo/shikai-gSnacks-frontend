@@ -8,6 +8,7 @@ import LoginModal from './LoginModal'
 import Banner from './Banner'
 import SnackList from './SnackList'
 import CardModal from './CardModal'
+import { request } from "../helper/index";
 
 class App extends Component {
 
@@ -57,6 +58,38 @@ class App extends Component {
     this.setState({ currReviews: getSnackReviews.data.data })
   }
 
+  handleSubmitNewReview = (event,id) => {
+    const title = event.target.title.value
+    const rating = event.target.rating.value
+    const text = event.target.text.value
+    request(`/snacks/${id}/reviews`, "post", {
+      title,
+      rating,
+      text,
+      usersId: 1
+    }).then(response =>{
+      this.setState({ addReview: false })
+      this.updateCurrSnackState(id)
+    })
+  };
+
+  handleDeleteReview = (snackId,reviewId) => {
+    console.log(snackId, reviewId)
+    request(`/snacks/${snackId}/reviews/${reviewId}`, "delete"
+    ).then(response =>{
+      // this.setState({ addReview: false })
+      this.updateCurrSnackState(snackId)
+    })
+  }
+
+
+  getTokenRequest = () => {
+    request(`/auth/token`
+    ).then(response => {
+      console.log(response)
+    })
+  }
+
   // Login Modal Methods //
   handleClose = () => {
     this.setState({ show: false });
@@ -79,12 +112,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {this.getTokenRequest()}
         <Banner handleShow={this.handleShow} />
         { this.state.show ? <LoginModal handleClose={this.handleClose}/> : null}
-        <CardModal handleCardClose={this.handleCardClose} handleCardShow={this.handleCardShow} 
-          cardShow={this.state.cardShow} currSnack={this.state.currSnack} 
-          currReviews={this.state.currReviews} addReview={this.state.addReview}
-          handleReviewFormShow={this.handleReviewFormShow} handleReviewFormClose={this.handleReviewFormClose}/>
+        <CardModal
+          handleCardClose={this.handleCardClose}
+          handleCardShow={this.handleCardShow}
+          handleReviewFormShow={this.handleReviewFormShow}
+          handleReviewFormClose={this.handleReviewFormClose}
+          handleSubmitNewReview={this.handleSubmitNewReview}
+          handleDeleteReview={this.handleDeleteReview}
+          cardShow={this.state.cardShow}
+          currSnack={this.state.currSnack}
+          currReviews={this.state.currReviews}
+          addReview={this.state.addReview}
+        />
         <SnackList snackData={this.state.snacks} handleCardShow={this.handleCardShow} />
       </div>
     );

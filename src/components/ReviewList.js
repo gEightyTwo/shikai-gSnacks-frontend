@@ -1,12 +1,13 @@
 import React from 'react'
 import Review from './Review'
 
-const ReviewList = ({currReviews}) => {
+const ReviewList = ({currReviews, handleDeleteReview}) => {
   const Reviews = currReviews.map(review => {
     return (
       <Review
         key={review.id}
         review={review}
+        handleDeleteReview={handleDeleteReview}
       />
     )
   })
