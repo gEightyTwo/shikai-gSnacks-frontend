@@ -13,7 +13,7 @@ const SnackDescription = ({
     return(
         <div>
         <Modal.Header closeButton>
-          <Modal.Title>currSnack.name</Modal.Title>
+          <Modal.Title>{currSnack.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body
           style={{ maxHeight: "calc(100vh - 210px)", overflowY: "auto" }}

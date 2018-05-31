@@ -16,12 +16,8 @@ class LoginModal extends Component {
     };
   }
 
-  settingFormToState = (firstName, lastName, email, password) => {
-    firstName ? this.setState({ firstName: firstName }) :  this.state.firstName
-    lastName ? this.setState({ lastName: lastName }) : this.state.lastName
-    email ? this.setState({ email: email }) : this.state.email
-    password ? this.setState({ password: password }) : this.state.password
-
+  settingFormToState = ({name, value}) => {
+    this.setState({[name]: value})
   }
 
   handleNewUser = () => {
