@@ -1,69 +1,67 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { request } from '../helper/index'
+import { request } from "../helper/index";
+import LoginForm from './LoginForm'
+import NewUserForm from './NewUserForm'
 
 class LoginModal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      email: '',
-      password: ''
-    }
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      newUser: false
+    };
+  }
+
+  settingFormToState = (firstName, lastName, email, password) => {
+    firstName ? this.setState({ firstName: firstName }) :  this.state.firstName
+    lastName ? this.setState({ lastName: lastName }) : this.state.lastName
+    email ? this.setState({ email: email }) : this.state.email
+    password ? this.setState({ password: password }) : this.state.password
+
+  }
+
+  handleNewUser = () => {
+    this.setState({ newUser: true })
   }
 
   loginSubmit = () => {
-    request('/auth/token', 'post', { email: this.state.email, password: this.state.password })
-      .then(response => {
-        localStorage.setItem('token', response.data.token)
-      })
-  }
+    request("/auth/token", "post", {
+      email: this.state.email,
+      password: this.state.password
+    }).then(response => {
+      localStorage.setItem("token", response.data.token);
+    });
+  };
 
   render() {
     return (
       <div>
-      <Modal show={true} onHide={this.props.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body
-          style={{ maxHeight: "calc(100vh - 210px)", overflowY: "auto" }}
-        >
-          {
-            <form action="">
-              <label htmlFor="">
-                Email:
-                <input type="email" className="email" 
-                onChange={event => {
-                  this.setState({email: event.target.value})
-                }}
-                />
-              </label>
-              <label htmlFor="">
-                Password:
-                <input type="password" className="password" 
-                onChange = {event => {
-                  this.setState({password: event.target.value})
-                }}
-                />
-              </label>
-            </form>
-          }
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            onClick={event => {
-              this.loginSubmit()
-            }}
-          >
-            Login
-          </Button>
-          <Button onClick={this.props.handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-    )
+        <Modal show={true} onHide={this.props.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Login or Signup</Modal.Title>
+          </Modal.Header>
+          {this.state.newUser ? <NewUserForm {...this.props} handleNewUser={this.handleNewUser} settingFormToState={this.settingFormToState} /> : <LoginForm {...this.props} handleNewUser={this.handleNewUser} settingFormToState={this.settingFormToState} />}
+          <Modal.Footer>
+            <Button
+              onClick={event => {
+                this.loginSubmit();
+              }}>
+              Login
+            </Button>
+            <Button
+             onClick={this.handleNewUser}>
+            New User
+            </Button>
+            <Button onClick={this.props.handleClose}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    );
   }
 }
-
 
 export default LoginModal;

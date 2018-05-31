@@ -83,7 +83,7 @@ class App extends Component {
         { this.state.show ? <LoginModal handleClose={this.handleClose}/> : null}
         <CardModal handleCardClose={this.handleCardClose} handleCardShow={this.handleCardShow} 
           cardShow={this.state.cardShow} currSnack={this.state.currSnack} 
-          currReviews={this.state.currReviews}
+          currReviews={this.state.currReviews} addReview={this.state.addReview}
           handleReviewFormShow={this.handleReviewFormShow} handleReviewFormClose={this.handleReviewFormClose}/>
         <SnackList snackData={this.state.snacks} handleCardShow={this.handleCardShow} />
       </div>

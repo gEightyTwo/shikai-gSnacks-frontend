@@ -11,7 +11,12 @@ const ReviewForm = (props) => {
         style={{ maxHeight: "calc(100vh - 210px)", overflowY: "auto" }}
       />
       {
-          <form>
+          <form
+          onSubmit={event => {
+            event.preventDefault()
+            props.handleReviewFormClose()
+          }}
+          >
           <label>
           Title
           <input type="text" name='title'/>
@@ -28,6 +33,7 @@ const ReviewForm = (props) => {
           </form>
       }
       <Modal.Footer>
+        <Button onClick={props.handleReviewFormClose}>Cancel</Button>
         <Button onClick={props.handleCardClose}>Close</Button>
       </Modal.Footer>
     </div>
