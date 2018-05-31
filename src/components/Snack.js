@@ -5,10 +5,28 @@ import 'bootstrap/dist/css/bootstrap.css'
 const Snack = ({snack, handleCardShow}) => {
   const { description, id, img, is_perishable, name, price } = snack
 
+  const imgCropStyle = {
+      height: '300px',
+      overflow: 'hidden',
+      display: 'flex',
+      justifyContent: 'center'
+  }
+
+  const imgStyle = {
+
+  }
+
+  const cardStyle = {
+    // height: '450px'
+  }
+
   return (
-    <div height='400px' className="col-xs-4 well">
+    <div style={cardStyle}
+      className="col-xs-4 well">
     <Card>
-        <CardImg width='100%' src={img} alt={name} />
+        <div style={imgCropStyle}>
+          <CardImg style={imgStyle} height='100%' width="auto" src={img} alt={name} />
+        </div>
         <CardBody>
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>${price}</CardSubtitle>

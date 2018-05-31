@@ -15,24 +15,24 @@ const ReviewForm = (props) => {
           <form className='reviewForm'
           onSubmit={event => {
             event.preventDefault()
-            props.handleReviewFormClose()
+            props.handleSubmitNewReview(event,props.currSnack.id)
           }}
           >
           <label>
-          {`Title: `} 
+          {`Title: `}
           <input type="text" name='title'/>
           </label>
         <label>
-            {`Rating: `} 
+            {`Rating: `}
             <input type='number' name='rating'/>
         </label>
         <label>
-        <textarea type="text" placeholder='Comments...' cols='70' rows='10'>
+        <textarea type="text" name='text' placeholder='Comments...' cols='70' rows='10'>
         </textarea>
         </label>
         <Button type='submit'>Submit</Button>
         {/* <input type="submit" value='submit'/> */}
-          </form>
+        </form>
       }
       <Modal.Footer>
         <Button onClick={props.handleReviewFormClose}>Cancel</Button>

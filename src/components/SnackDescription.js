@@ -8,7 +8,8 @@ const SnackDescription = ({
     cardShow,
     currSnack,
     currReviews,
-    handleReviewFormShow
+    handleReviewFormShow,
+    handleDeleteReview
 }) => {
     return(
         <div>
@@ -33,7 +34,10 @@ const SnackDescription = ({
             onClick={handleReviewFormShow}
             >Add Review</Button>
           </h4>
-          <ReviewList currReviews={currReviews} />
+          <ReviewList
+            currReviews={currReviews}
+            handleDeleteReview={handleDeleteReview}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleCardClose}>Close</Button>

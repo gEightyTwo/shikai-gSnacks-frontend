@@ -1,5 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
+import { CardGroup, CardDeck } from 'reactstrap';
 import Snack from './Snack'
 
 const SnackList = ({snackData, handleCardShow}) => {
@@ -14,9 +15,10 @@ const SnackList = ({snackData, handleCardShow}) => {
   })
 
     return (
-      <div className='snack-container'>
+      <CardDeck>
         {Snacks}
-      </div>
+      </CardDeck>
+
     )
 }
 
