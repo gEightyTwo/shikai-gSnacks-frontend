@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Button } from 'react-bootstrap'
+import '../ReviewForm.css'
 
 const ReviewForm = (props) => {
   return (
@@ -11,25 +12,26 @@ const ReviewForm = (props) => {
         style={{ maxHeight: "calc(100vh - 210px)", overflowY: "auto" }}
       />
       {
-          <form
+          <form className='reviewForm'
           onSubmit={event => {
             event.preventDefault()
             props.handleReviewFormClose()
           }}
           >
           <label>
-          Title
+          {`Title: `} 
           <input type="text" name='title'/>
           </label>
         <label>
-            Rating
+            {`Rating: `} 
             <input type='number' name='rating'/>
         </label>
         <label>
-        Comments
-        <input type="text"/>
+        <textarea type="text" placeholder='Comments...' cols='70' rows='10'>
+        </textarea>
         </label>
-        <input type="submit" value='submit'/>
+        <Button type='submit'>Submit</Button>
+        {/* <input type="submit" value='submit'/> */}
           </form>
       }
       <Modal.Footer>
