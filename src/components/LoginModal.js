@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { request } from "../helper/index";
+import { request, AuthenticationService } from "../helper";
 import LoginForm from './LoginForm'
 import NewUserForm from './NewUserForm'
+
 
 class LoginModal extends Component {
   constructor(props) {
@@ -30,7 +31,12 @@ class LoginModal extends Component {
       password: this.state.password
     }).then(response => {
       localStorage.setItem("token", response.data.token);
-    });
+      return request('/auth/token')
+    })
+    .then(response => {
+      AuthenticationService.setAuthState(response.data)
+      this.props.handleClose()
+    })
   };
 
   render() {
@@ -42,12 +48,7 @@ class LoginModal extends Component {
           </Modal.Header>
           {this.state.newUser ? <NewUserForm {...this.props} handleNewUser={this.handleNewUser} settingFormToState={this.settingFormToState} /> : <LoginForm {...this.props} handleNewUser={this.handleNewUser} settingFormToState={this.settingFormToState} />}
           <Modal.Footer>
-            <Button
-              onClick={event => {
-                this.loginSubmit();
-              }}>
-              Login
-            </Button>
+          {!this.state.newUser ? <Button onClick={event => this.loginSubmit()}>Login</Button> : null}
             <Button
              onClick={this.handleNewUser}>
             New User
