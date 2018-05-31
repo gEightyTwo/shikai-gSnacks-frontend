@@ -1,37 +1,16 @@
-import React from 'react'
-import { Modal, Button, Row, Col, Image } from 'react-bootstrap'
-import ReviewList from './ReviewList'
+import React from "react";
+import { Modal } from "react-bootstrap";
+import SnackDescription from './SnackDescription'
+import ReviewForm from './ReviewForm'
 
+const CardModal = (props) => {
+  return (
+    <div>
+      <Modal show={props.cardShow} onHide={props.handleCardClose}>
+      {props.addReview ? <ReviewForm {...props}/> : <SnackDescription {...props}/>}
+      </Modal>
+    </div>
+  );
+};
 
-const CardModal = ({ handleCardClose, handleCardShow, cardShow, currSnack, currReviews }) => {
-    return (
-        <div>
-        <Modal show={cardShow} onHide={handleCardClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>currSnack.name</Modal.Title>
-          </Modal.Header>
-          <Modal.Body style={{'maxHeight': 'calc(100vh - 210px)', 'overflowY': 'auto'}}>
-            <Row>
-              <Col xs={6} md={6}>
-                <Image src={currSnack.img}/>
-              </Col>
-              <Col xs={6} md={6}>
-                <h4>Description</h4>
-                <p>
-                  {currSnack.description}
-                </p>
-              </Col>
-            </Row>
-            <h4>Reviews <Button>Add Review</Button></h4>
-            <ReviewList currReviews={currReviews}/>
-
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={handleCardClose}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    )
-}
-
-export default CardModal
+export default CardModal;
