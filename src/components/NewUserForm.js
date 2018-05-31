@@ -11,13 +11,9 @@ const NewUserForm = props => {
             <input
               type="text"
               className="firstName"
+              name="firstName"
               onChange={event => {
-                props.settingFormToState(
-                  event.target.value,
-                  undefined,
-                  undefined,
-                  undefined
-                );
+                props.settingFormToState(event.target);
               }}
             />
           </label>
@@ -26,13 +22,9 @@ const NewUserForm = props => {
             <input
               type="text"
               className="lastName"
+              name="lastName"
               onChange={event => {
-                props.settingFormToState(
-                  undefined,
-                  event.target.value,
-                  undefined,
-                  undefined
-                );
+                props.settingFormToState(event.target);
               }}
             />
           </label>
@@ -41,13 +33,9 @@ const NewUserForm = props => {
             <input
               type="email"
               className="email"
+              name="email"
               onChange={event => {
-                props.settingFormToState(
-                  undefined,
-                  undefined,
-                  event.target.value,
-                  undefined
-                );
+                props.settingFormToState(event.target);
               }}
             />
           </label>
@@ -56,13 +44,9 @@ const NewUserForm = props => {
             <input
               type="password"
               className="password"
+              name="password"
               onChange={event => {
-                props.settingFormToState(
-                  undefined,
-                  undefined,
-                  undefined,
-                  event.target.value
-                );
+                props.settingFormToState(event.target);
               }}
             />
           </label>

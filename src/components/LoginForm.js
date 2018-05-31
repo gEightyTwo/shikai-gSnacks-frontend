@@ -11,8 +11,9 @@ const LoginForm = props => {
             <input
               type="email"
               className="email"
+              name="email"
               onChange={event => {
-                props.settingFormToState(event.target.value, undefined);
+                props.settingFormToState(event.target);
               }}
             />
           </label>
@@ -21,8 +22,9 @@ const LoginForm = props => {
             <input
               type="password"
               className="password"
+              name="password"
               onChange={event => {
-                props.settingFormToState(undefined, event.target.value);
+                props.settingFormToState(event.target);
               }}
             />
           </label>
