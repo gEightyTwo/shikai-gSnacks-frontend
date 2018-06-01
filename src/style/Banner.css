@@ -1,0 +1,27 @@
+.banner {
+    display: flex;
+    height: 40vh;
+    background-image: url('../images/snacks.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 0;
+    padding-bottom:0;
+}
+
+.bannerRowOne {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.banner-title {
+    font-size: 50px;
+}
+
+.login-modal-button {
+    margin-top: 10px;
+}
+
+
+

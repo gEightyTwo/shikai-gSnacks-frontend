@@ -1,7 +1,7 @@
 import React from 'react'
 import { Panel, Button } from 'react-bootstrap'
 import { withAuthentication } from "../helper/index";
-import '../Review.css'
+import '../style/Review.css'
 
 
 const Review = ({review, handleEditReviewFormShow, handleDeleteReview, authState}) => {
@@ -27,7 +27,6 @@ const Review = ({review, handleEditReviewFormShow, handleDeleteReview, authState
             : null
           }
           </Panel.Title>
-
         </Panel.Heading>
         <Panel.Body>
           <div>

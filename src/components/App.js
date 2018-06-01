@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 // Files
-import '../App.css';
+import '../style/App.css';
 import LoginModal from './LoginModal'
 import Banner from './Banner'
 import SnackList from './SnackList'

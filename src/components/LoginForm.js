@@ -1,12 +1,13 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import '../style/LoginForm.css'
 
 const LoginForm = props => {
   return (
-    <Modal.Body style={{ maxHeight: "calc(100vh - 210px)", overflowY: "auto" }}>
+    <Modal.Body>
       {
-        <form action="">
-          <label htmlFor="">
+        <form className='loginFormBody'>
+          <label>
             Email:
             <input
               type="email"
@@ -17,7 +18,7 @@ const LoginForm = props => {
               }}
             />
           </label>
-          <label htmlFor="">
+          <label>
             Password:
             <input
               type="password"
