@@ -1,6 +1,5 @@
 // Modules
 import React, { Component } from 'react';
-import axios from 'axios'
 
 // Files
 import '../style/App.css';
@@ -8,8 +7,9 @@ import LoginModal from './LoginModal'
 import Banner from './Banner'
 import SnackList from './SnackList'
 import CardModal from './CardModal'
-import { request } from "../helper/index";
+import { request } from "../helper/helper";
 
+// Component
 class App extends Component {
 
   constructor(props){
@@ -27,10 +27,11 @@ class App extends Component {
     }
   }
 
-  updateState = async () => {
-    //Async and await so we can setState AFTER we get the data
-    const getAllSnacksResponse = await axios.get('http://localhost:3000/snacks')
-    this.setState({ snacks: getAllSnacksResponse.data.data })
+  updateState = () => {
+    request(`/snacks`)
+    .then(response =>{
+      this.setState({snacks: response.data.data})
+    })
   }
 
   // Review Modal Methods  //
@@ -69,11 +70,15 @@ class App extends Component {
 
   updateCurrSnackState = async (id) => {
     // Snack Info
-    const getOneSnack = await axios.get(`http://localhost:3000/snacks/${id}`)
-    this.setState({ currSnack: getOneSnack.data.data })
+    request(`/snacks/${id}`)
+    .then(response =>{
+      this.setState({currSnack: response.data.data})
+    })
     // Reviews
-    const getSnackReviews = await axios.get(`http://localhost:3000/snacks/${id}/reviews`)
-    this.setState({ currReviews: getSnackReviews.data.data })
+    request(`/snacks/${id}/reviews`)
+    .then(response =>{
+      this.setState({currReviews: response.data.data})
+    })
   }
 
   handleSubmitNewReview = (event,id,usersId) => {
@@ -119,12 +124,10 @@ class App extends Component {
   // Login Modal Methods //
   handleClose = () => {
     this.setState({ show: false });
-    // console.log(this.state.show)
   }
 
   handleShow = () => {
     this.setState({ show: true });
-    // console.log(this.state.show)
   }
 
   //////////////////////
@@ -132,13 +135,11 @@ class App extends Component {
   //////////////////////
   componentWillMount = () => {
     this.updateState()
-    // console.log(this.state)
   }
 
   render() {
     return (
       <div className="App">
-        {/* {this.getTokenRequest()} */}
         <Banner handleShow={this.handleShow} />
         { this.state.show ? <LoginModal handleClose={this.handleClose}/> : null}
         <CardModal

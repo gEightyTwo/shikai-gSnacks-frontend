@@ -4,7 +4,7 @@ import "./style/index.css";
 import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { request, AuthenticationService } from './helper'
+import { request, AuthenticationService } from './helper/helper'
 
 request("/auth/token").then(response => {
   AuthenticationService.setAuthState(response.data);

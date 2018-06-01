@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button, Row, Col, Image } from "react-bootstrap";
 import ReviewList from "./ReviewList";
-import { withAuthentication } from "../helper";
+import { withAuthentication } from "../helper/helper";
 
 const SnackDescription = ({
     handleCardClose,
@@ -16,7 +16,6 @@ const SnackDescription = ({
     authStatePending
 }) => {
   const calcAvgRating = () => {
-    // If no reviews, defaults to 5.00
     if(currReviews.length===0) return 5.00
     let sum = 0
     currReviews.forEach(review => {

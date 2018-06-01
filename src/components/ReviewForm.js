@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button } from 'react-bootstrap'
-import { withAuthentication } from "../helper";
+import { withAuthentication } from "../helper/helper";
 import '../style/ReviewForm.css'
 
 const ReviewForm = (props) => {

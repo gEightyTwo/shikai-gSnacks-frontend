@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "../style/Banner.css";
-import { withAuthentication } from "../helper";
+import { withAuthentication } from "../helper/helper";
 
 const Banner = ({ handleShow, authState, authStatePending }) => {
   return (
