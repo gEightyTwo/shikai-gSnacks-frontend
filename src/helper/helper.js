@@ -86,7 +86,7 @@ export const request = (path, method = 'get', body = null) => {
 
   const token = localStorage.getItem('token')
 
-  return axios(`https://shikai-snacks.herokuapp.com${path}`, {
+  return axios(`${process.env.REACT_APP_BACKEND}${path}`, {
     method: method,
     headers: {
       'Content-Type': 'application/json',
