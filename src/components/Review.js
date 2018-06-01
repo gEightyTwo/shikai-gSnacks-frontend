@@ -1,7 +1,7 @@
 import React from 'react'
 import { Panel, Button } from 'react-bootstrap'
 import { withAuthentication } from "../helper/index";
-import '../Review.css'
+import '../style/Review.css'
 
 
 
@@ -12,6 +12,7 @@ const Review = ({review, handleDeleteReview}) => {
       <Panel>
         <Panel.Heading>
           <Panel.Title componentClass="h3" className='review-header'>{title} by User Id: {users_id}
+
             <span className='buttons-container'>
               <Button bsStyle="warning">
                 Edit

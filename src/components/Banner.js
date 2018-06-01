@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Jumbotron } from "react-bootstrap";
-import "../Banner.css";
+import "../style/Banner.css";
 import { withAuthentication } from "../helper";
 
 const Banner = ({ handleShow, authState, authStatePending }) => {

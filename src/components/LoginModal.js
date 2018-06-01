@@ -3,6 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import { request, AuthenticationService } from "../helper";
 import LoginForm from './LoginForm'
 import NewUserForm from './NewUserForm'
+import '../style/LoginModal.css'
 
 
 class LoginModal extends Component {
@@ -46,8 +47,10 @@ class LoginModal extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Login or Signup</Modal.Title>
           </Modal.Header>
+          <div className='loginModalBody'>
           {this.state.newUser ? <NewUserForm {...this.props} handleNewUser={this.handleNewUser} settingFormToState={this.settingFormToState} /> : <LoginForm {...this.props} handleNewUser={this.handleNewUser} settingFormToState={this.settingFormToState} />}
-          <Modal.Footer>
+          </div>
+          <Modal.Footer className='loginModalFooter'>
           {!this.state.newUser ? <Button onClick={event => this.loginSubmit()}>Login</Button> : null}
             <Button
              onClick={this.handleNewUser}>

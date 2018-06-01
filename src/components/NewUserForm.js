@@ -1,11 +1,12 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import '../style/NewUserForm.css'
 
 const NewUserForm = props => {
   return (
-    <Modal.Body style={{ maxHeight: "calc(100vh - 210px)", overflowY: "auto" }}>
+    <Modal.Body>
       {
-        <form>
+        <form className='newUserFormBody'>
           <label>
             First Name:
             <input
