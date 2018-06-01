@@ -4,26 +4,29 @@ import { withAuthentication } from "../helper/index";
 import '../style/Review.css'
 
 
-
-const Review = ({review, handleDeleteReview}) => {
+const Review = ({review, handleEditReviewFormShow, handleDeleteReview, authState}) => {
   const {id, title, text, rating, snacks_id, users_id} = review
   return (
     <div>
+      {console.log(handleEditReviewFormShow)}
       <Panel>
         <Panel.Heading>
-          <Panel.Title componentClass="h3" className='review-header'>{title} by User Id: {users_id}
-
-            <span className='buttons-container'>
-              <Button bsStyle="warning">
-                Edit
-              </Button>
-              <Button bsStyle="danger"
-                onClick={()=>handleDeleteReview(snacks_id, id)}>
-                Delete
-              </Button>
-            </span>
+          <Panel.Title componentClass="h3" className='review-header'>{title} by {authState.name}
+            {authState && authState.id===users_id ?
+              <span className='buttons-container'>
+                <Button bsStyle="warning"
+                  onClick={()=>handleEditReviewFormShow(id)}
+                  >
+                  Edit
+                </Button>
+                <Button bsStyle="danger"
+                  onClick={()=>handleDeleteReview(snacks_id, id)}>
+                  Delete
+                </Button>
+              </span>
+            : null
+          }
           </Panel.Title>
-
         </Panel.Heading>
         <Panel.Body>
           <div>

@@ -21,7 +21,9 @@ class App extends Component {
       currSnack: {},
       currReviews:[],
       addReview: false,
+      editReview: false,
       show: false,
+      reviewForEdit: 0
     }
   }
 
@@ -33,7 +35,10 @@ class App extends Component {
 
   // Review Modal Methods  //
   handleCardShow = (id) => {
-    this.setState({ cardShow: true })
+    this.setState({
+      cardShow: true,
+      editReview: false,
+     })
     this.updateCurrSnackState(id)
   }
 
@@ -41,12 +46,25 @@ class App extends Component {
     this.setState({ cardShow: false })
   }
 
+  // New Review Form
   handleReviewFormShow = () => {
     this.setState({ addReview: true })
   }
 
   handleReviewFormClose = () => {
     this.setState({ addReview: false })
+  }
+
+  // Edit Review Form
+  handleEditReviewFormShow = (reviewId) => {
+    this.setState({
+      editReview: true,
+      reviewForEdit: reviewId
+     })
+  }
+
+  handleEditReviewFormClose = () => {
+    this.setState({ editReview: false })
   }
 
   updateCurrSnackState = async (id) => {
@@ -58,7 +76,7 @@ class App extends Component {
     this.setState({ currReviews: getSnackReviews.data.data })
   }
 
-  handleSubmitNewReview = (event,id) => {
+  handleSubmitNewReview = (event,id,usersId) => {
     const title = event.target.title.value
     const rating = event.target.rating.value
     const text = event.target.text.value
@@ -66,9 +84,23 @@ class App extends Component {
       title,
       rating,
       text,
-      usersId: 1
+      usersId
     }).then(response =>{
       this.setState({ addReview: false })
+      this.updateCurrSnackState(id)
+    })
+  };
+
+  handleEditReview = (event, id, revId) => {
+    const title = event.target.title.value
+    const rating = event.target.rating.value
+    const text = event.target.text.value
+    request(`/snacks/${id}/reviews/${revId}`, "put", {
+      title,
+      rating,
+      text
+    }).then(response =>{
+      this.setState({ editReview: false })
       this.updateCurrSnackState(id)
     })
   };
@@ -77,18 +109,12 @@ class App extends Component {
     console.log(snackId, reviewId)
     request(`/snacks/${snackId}/reviews/${reviewId}`, "delete"
     ).then(response =>{
-      // this.setState({ addReview: false })
       this.updateCurrSnackState(snackId)
     })
   }
 
 
-  getTokenRequest = () => {
-    request(`/auth/token`
-    ).then(response => {
-      console.log(response)
-    })
-  }
+
 
   // Login Modal Methods //
   handleClose = () => {
@@ -112,7 +138,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.getTokenRequest()}
+        {/* {this.getTokenRequest()} */}
         <Banner handleShow={this.handleShow} />
         { this.state.show ? <LoginModal handleClose={this.handleClose}/> : null}
         <CardModal
@@ -121,11 +147,16 @@ class App extends Component {
           handleReviewFormShow={this.handleReviewFormShow}
           handleReviewFormClose={this.handleReviewFormClose}
           handleSubmitNewReview={this.handleSubmitNewReview}
+          handleEditReviewFormShow={this.handleEditReviewFormShow}
+          handleEditReviewFormClose={this.handleEditReviewFormClose}
+          handleEditReview={this.handleEditReview}
           handleDeleteReview={this.handleDeleteReview}
           cardShow={this.state.cardShow}
           currSnack={this.state.currSnack}
           currReviews={this.state.currReviews}
           addReview={this.state.addReview}
+          editReview={this.state.editReview}
+          reviewForEdit={this.state.reviewForEdit}
         />
         <SnackList snackData={this.state.snacks} handleCardShow={this.handleCardShow} />
       </div>
