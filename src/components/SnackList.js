@@ -1,7 +1,7 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.css'
 import { CardDeck } from 'reactstrap';
 import Snack from './Snack'
+import 'bootstrap/dist/css/bootstrap.css'
 
 const SnackList = ({snackData, handleCardShow}) => {
   const Snacks = snackData.map(snack => {

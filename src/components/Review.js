@@ -1,6 +1,6 @@
 import React from 'react'
 import { Panel, Button } from 'react-bootstrap'
-import { withAuthentication } from "../helper/index";
+import { withAuthentication } from "../helper/helper";
 import '../style/Review.css'
 
 

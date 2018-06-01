@@ -1,8 +1,6 @@
 import React from 'react'
 import Review from './Review'
 
-
-
 const ReviewList = ({currReviews, handleEditReviewFormShow, handleDeleteReview}) => {
   const Reviews = currReviews.map(review => {
     return (

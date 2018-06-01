@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { request, AuthenticationService } from "../helper";
+import { request, AuthenticationService } from "../helper/helper";
 import LoginForm from "./LoginForm";
 import NewUserForm from "./NewUserForm";
 import "../style/LoginModal.css";
