@@ -1,4 +1,4 @@
-Jumbotron, .banner {
+.banner {
     display: flex;
     height: 40vh;
     background-image: url('../images/snacks.jpg');
@@ -9,11 +9,19 @@ Jumbotron, .banner {
     padding-bottom:0;
 }
 
-.banner-title {
+.bannerRowOne {
+    width: 100vw;
     display: flex;
-    align-items: flex-start;
-    justify-content: left;
-    text-align: left;
-    margin: 0;
+    justify-content: space-between;
 }
+
+.banner-title {
+    font-size: 50px;
+}
+
+.login-modal-button {
+    margin-top: 10px;
+}
+
+
 
