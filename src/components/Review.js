@@ -1,7 +1,7 @@
 import React from 'react'
 import { Panel, Button } from 'react-bootstrap'
 import { withAuthentication } from "../helper/index";
-import '../Review.css'
+import '../style/Review.css'
 
 
 const Review = ({review, handleEditReviewFormShow, handleDeleteReview, authState}) => {
@@ -11,6 +11,7 @@ const Review = ({review, handleEditReviewFormShow, handleDeleteReview, authState
       {console.log(handleEditReviewFormShow)}
       <Panel>
         <Panel.Heading>
+<<<<<<< HEAD
           <Panel.Title componentClass="h3" className='review-header'>{title} by {authState.name}
             {authState && authState.id===users_id ?
               <span className='buttons-container'>
@@ -26,6 +27,19 @@ const Review = ({review, handleEditReviewFormShow, handleDeleteReview, authState
               </span>
             : null
           }
+=======
+          <Panel.Title componentClass="h3" className='review-header'>{title} by User Id: {users_id}
+
+            <span className='buttons-container'>
+              <Button bsStyle="warning">
+                Edit
+              </Button>
+              <Button bsStyle="danger"
+                onClick={()=>handleDeleteReview(snacks_id, id)}>
+                Delete
+              </Button>
+            </span>
+>>>>>>> a986a94c8a8d383617a9a92bd9ab0057811a6483
           </Panel.Title>
 
         </Panel.Heading>

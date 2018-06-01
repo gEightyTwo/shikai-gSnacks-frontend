@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button } from 'react-bootstrap'
 import { withAuthentication } from "../helper";
 
-import '../ReviewForm.css'
+import '../style/ReviewForm.css'
 
 const ReviewForm = (props) => {
   return (
