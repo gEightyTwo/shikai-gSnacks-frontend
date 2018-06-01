@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal, Button, Row, Col, Image } from "react-bootstrap";
 import ReviewList from "./ReviewList";
+import { withAuthentication } from "../helper";
 
 const SnackDescription = ({
     handleCardClose,
@@ -9,7 +10,9 @@ const SnackDescription = ({
     currSnack,
     currReviews,
     handleReviewFormShow,
-    handleDeleteReview
+    handleDeleteReview,
+    authState,
+    authStatePending
 }) => {
     return(
         <div>
@@ -30,9 +33,11 @@ const SnackDescription = ({
           </Row>
           <h4>
             Reviews
+            {authState && !authStatePending? (
             <Button
             onClick={handleReviewFormShow}
             >Add Review</Button>
+            ) : null}
           </h4>
           <ReviewList
             currReviews={currReviews}
@@ -46,4 +51,4 @@ const SnackDescription = ({
     )
 }
 
-export default SnackDescription
+export default withAuthentication(SnackDescription)

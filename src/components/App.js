@@ -83,12 +83,7 @@ class App extends Component {
   }
 
 
-  getTokenRequest = () => {
-    request(`/auth/token`
-    ).then(response => {
-      console.log(response)
-    })
-  }
+
 
   // Login Modal Methods //
   handleClose = () => {
@@ -112,7 +107,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.getTokenRequest()}
+        {/* {this.getTokenRequest()} */}
         <Banner handleShow={this.handleShow} />
         { this.state.show ? <LoginModal handleClose={this.handleClose}/> : null}
         <CardModal
