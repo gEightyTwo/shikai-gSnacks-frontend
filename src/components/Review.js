@@ -27,7 +27,6 @@ const Review = ({review, handleEditReviewFormShow, handleDeleteReview, authState
             : null
           }
           </Panel.Title>
-
         </Panel.Heading>
         <Panel.Body>
           <div>
