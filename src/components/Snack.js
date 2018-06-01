@@ -12,33 +12,23 @@ const Snack = ({snack, handleCardShow}) => {
       justifyContent: 'center'
   }
 
-  const imgStyle = {
-
-  }
-
-  const cardStyle = {
-    // height: '450px'
-  }
-
   const truncateDescriptionString = () => {
     const maxLength = 30;
-    console.log(description.length)
     const trimmedString = description.substring(0, maxLength);
     return description.length<=maxLength ? description : `${trimmedString}...`
   }
 
   return (
-    <div style={cardStyle}
-      className="col-xs-4 well">
+    <div className="col-xs-4 well">
     <Card>
         <div style={imgCropStyle}>
-          <CardImg style={imgStyle} height='100%' width="auto" src={img} alt={name} />
+          <CardImg height='100%' width='auto' src={img} alt={name} />
         </div>
         <CardBody>
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>${price}</CardSubtitle>
           <CardText>{truncateDescriptionString()}</CardText>
-          <Button className='card-modal-button' bsstyle="primary" bssize="large" onClick={()=>handleCardShow(id)}>
+          <Button className='card-modal-button' bsstyle='primary' bssize='large' onClick={()=>handleCardShow(id)}>
                     More
                 </Button>
         </CardBody>

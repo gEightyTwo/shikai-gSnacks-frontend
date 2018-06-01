@@ -3,12 +3,13 @@ import Review from './Review'
 
 
 
-const ReviewList = ({currReviews, handleDeleteReview}) => {
+const ReviewList = ({currReviews, handleEditReviewFormShow, handleDeleteReview}) => {
   const Reviews = currReviews.map(review => {
     return (
       <Review
         key={review.id}
         review={review}
+        handleEditReviewFormShow={handleEditReviewFormShow}
         handleDeleteReview={handleDeleteReview}
       />
     )
@@ -16,6 +17,7 @@ const ReviewList = ({currReviews, handleDeleteReview}) => {
 
     return (
       <div className='reviews-container'>
+        {console.log(handleEditReviewFormShow)}
         {Reviews}
       </div>
     )

@@ -1,14 +1,12 @@
 import React from "react";
 import { Modal, Button } from 'react-bootstrap'
-import { withAuthentication } from "../helper";
-
 import '../ReviewForm.css'
 
-const ReviewForm = (props) => {
+const EditReviewForm = (props) => {
   return (
     <div>
       <Modal.Header closeButton>
-        <Modal.Title>{props.currSnack.name}</Modal.Title>
+        <Modal.Title>Edit Review</Modal.Title>
       </Modal.Header>
       <Modal.Body
         style={{ maxHeight: "calc(100vh - 210px)", overflowY: "auto" }}
@@ -17,7 +15,7 @@ const ReviewForm = (props) => {
           <form className='reviewForm'
           onSubmit={event => {
             event.preventDefault()
-            props.handleSubmitNewReview(event,props.currSnack.id,props.authState.id)
+            props.handleEditReview(event,props.currSnack.id,props.reviewForEdit)
           }}
           >
           <label>
@@ -36,11 +34,11 @@ const ReviewForm = (props) => {
         </form>
       }
       <Modal.Footer>
-        <Button onClick={props.handleReviewFormClose}>Cancel</Button>
+        <Button onClick={props.handleEditReviewFormClose}>Cancel</Button>
         <Button onClick={props.handleCardClose}>Close</Button>
       </Modal.Footer>
     </div>
   );
 };
 
-export default withAuthentication(ReviewForm)
+export default EditReviewForm

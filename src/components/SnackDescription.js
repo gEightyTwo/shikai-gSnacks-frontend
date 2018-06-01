@@ -10,6 +10,7 @@ const SnackDescription = ({
     currSnack,
     currReviews,
     handleReviewFormShow,
+    handleEditReviewFormShow,
     handleDeleteReview,
     authState,
     authStatePending
@@ -25,8 +26,21 @@ const SnackDescription = ({
     return avg
   }
 
+  const imgCropStyle = {
+      height: '250px',
+      overflow: 'hidden',
+      display: 'flex',
+      justifyContent: 'center'
+  }
+
+  const reviewTitleStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '0 0 10px 0'
+  }
+
   return(
-      <div>
+    <div>
       <Modal.Header closeButton>
         <Modal.Title>{currSnack.name}</Modal.Title>
       </Modal.Header>
@@ -35,30 +49,36 @@ const SnackDescription = ({
       >
         <Row>
           <Col xs={6} md={6}>
-            <Image src={currSnack.img} />
+            <div style={imgCropStyle}>
+              <Image height='100%' width='auto' src={currSnack.img} />
+            </div>
           </Col>
           <Col xs={6} md={6}>
             <h4>Description</h4>
             <p>{currSnack.description}</p>
           </Col>
         </Row>
-        <h4>
-          Average Rating: {calcAvgRating()}/5.00
-          {authState && !authStatePending? (
-          <Button
-          onClick={handleReviewFormShow}
-          >Add Review</Button>
-          ) : null}
-        </h4>
+        <div style={reviewTitleStyle}>
+          <h4>
+            Average Rating: {calcAvgRating()}/5.00
+          </h4>
+          {authState && !authStatePending ? (
+            <Button
+              onClick={handleReviewFormShow}
+              >Add Review
+            </Button>) : null}
+        </div>
+
         <ReviewList
           currReviews={currReviews}
+          handleEditReviewFormShow={handleEditReviewFormShow}
           handleDeleteReview={handleDeleteReview}
         />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={handleCardClose}>Close</Button>
       </Modal.Footer>
-      </div>
+    </div>
   )
 }
 
