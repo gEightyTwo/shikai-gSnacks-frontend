@@ -1,7 +1,7 @@
 # ShiKai Snacks
 
 
-This is a single-page, react-based web app that allows users to view, rate and comment on a variety of posted snacks 
+This is a single-page, react-based web app that allows users to view, rate and comment on a variety of posted snacks
 from a snack list. A user must create an account and log in before being allowed to post a review or edit previous posts they wrote.
 
 
@@ -11,7 +11,7 @@ Please review the ReactReadMe file in this project to get this app started on yo
 
 # Purpose
 
-The purpose of this project was to collaborate with a fellow coder and utilize react to build a full stack web application. 
+The purpose of this project was to collaborate with a fellow coder and utilize react to build a full stack web application.
 
 # Planned Additions and Upgrades
 
