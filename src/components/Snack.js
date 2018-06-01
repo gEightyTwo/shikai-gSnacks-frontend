@@ -20,6 +20,13 @@ const Snack = ({snack, handleCardShow}) => {
     // height: '450px'
   }
 
+  const truncateDescriptionString = () => {
+    const maxLength = 30;
+    console.log(description.length)
+    const trimmedString = description.substring(0, maxLength);
+    return description.length<=maxLength ? description : `${trimmedString}...`
+  }
+
   return (
     <div style={cardStyle}
       className="col-xs-4 well">
@@ -30,7 +37,7 @@ const Snack = ({snack, handleCardShow}) => {
         <CardBody>
           <CardTitle>{name}</CardTitle>
           <CardSubtitle>${price}</CardSubtitle>
-          <CardText>{description}</CardText>
+          <CardText>{truncateDescriptionString()}</CardText>
           <Button className='card-modal-button' bsstyle="primary" bssize="large" onClick={()=>handleCardShow(id)}>
                     More
                 </Button>
