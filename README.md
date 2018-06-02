@@ -1,5 +1,5 @@
 # ShiKai Snacks
-
+https://shikai-snacks.herokuapp.com/
 
 This is a single-page, react-based web app that allows users to view, rate and comment on a variety of posted snacks
 from a snack list. A user must create an account and log in before being allowed to post a review or edit previous posts they wrote.
